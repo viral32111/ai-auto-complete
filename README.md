@@ -3,9 +3,6 @@
 ![GitHub CI workflow status](https://img.shields.io/github/actions/workflow/status/viral32111/ai-auto-complete/ci.yml?label=CI)
 ![GitHub CodeQL workflow status](https://img.shields.io/github/actions/workflow/status/viral32111/ai-auto-complete/codeql.yml?label=CodeQL)
 ![GitHub repository size](https://img.shields.io/github/repo-size/viral32111/ai-auto-complete?label=Size)
-![GitHub latest release](https://img.shields.io/github/v/release/viral32111/ai-auto-complete?label=Latest%20Release)
-![GitHub release downloads](https://img.shields.io/github/downloads/viral32111/ai-auto-complete/total?label=Downloads)
-![GitHub release date](https://img.shields.io/github/release-date/viral32111/ai-auto-complete?label=Release%20Date)
 ![GitHub last commit](https://img.shields.io/github/last-commit/viral32111/ai-auto-complete?label=Last%20Commit)
 
 This is a demonstration of using [OpenAI's GPT natural language models](https://platform.openai.com/docs/models) to generate suggestions & auto-completions for searches.
