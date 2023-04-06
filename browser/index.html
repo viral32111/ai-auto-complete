@@ -6,26 +6,23 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<link rel="stylesheet" href="/styles/bundle.dev.css" type="text/css">
+		<link rel="stylesheet" href="/styles/bundle.dev.css" type="text/css" />
 
-		<script src="https://cdn.tailwindcss.com/3.3.0" defer></script>
+		<script src="https://cdn.tailwindcss.com/3.3.0"></script>
+
 		<script src="https://code.jquery.com/jquery-3.6.4.min.js" defer></script>
 		<script src="/scripts/bundle.dev.js" defer></script>
 	</head>
-	<body class="bg-gray-100 flex flex-col min-h-screen">
-		<div class="flex-grow flex items-center justify-center">
-			<div class="bg-white p-6 rounded-lg shadow-lg text-center">
-				<h1 class="text-4xl font-bold mb-4">Search Page</h1>
-				<div class="flex items-center space-x-3">
-					<input type="text" placeholder="Search..." class="border border-gray-300 p-2 rounded-lg" />
-					<button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Search</button>
-				</div>
-			</div>
+	<body class="flex flex-col min-h-screen bg-gray-50 bg-[url('/images/cooking.jpg')] backdrop-blur-sm bg-auto bg-no-repeat bg-center bg-cover">
+		<div class="flex flex-grow items-center justify-center">
+			<label for="search" class="sr-only">Search:</label>
+			<input class="w-2/5 px-4 py-3 rounded-2xl border border-gray-200 shadow focus:outline-none text-italic" type="text" placeholder="Search for something about cooking..." />
 		</div>
 
-		<footer class="bg-white p-4 text-center">
-			<a href="https://github.com/viral32111/ai-auto-complete" class="text-blue-500 hover:underline">GitHub</a> | 
-			<a href="https://viral32111.com" class="text-blue-500 hover:underline">Website</a>
+		<footer class="p-4 text-center font-bold text-gray-500">
+			<a href="https://github.com/viral32111/ai-auto-complete" class="text-blue-600 hover:underline">GitHub</a>
+			•
+			<a href="https://viral32111.com" class="text-blue-600 hover:underline">Website</a>
 		</footer>
 	</body>
 </html>
