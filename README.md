@@ -2,6 +2,8 @@
 
 This is a demonstration of using OpenAI's GPT natural language models to generate suggestions & auto-completions for searches.
 
+**NOTE: This project is under development, functionality is not guaranteed!**
+
 ## Background
 
 *TO-DO*
