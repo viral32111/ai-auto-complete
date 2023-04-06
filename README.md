@@ -1,32 +1,43 @@
 # AI Auto-Complete
 
-This is a demonstration of using OpenAI's GPT natural language models to generate suggestions & auto-completions for searches.
+![GitHub CI workflow status](https://img.shields.io/github/actions/workflow/status/viral32111/ai-auto-complete/ci.yml?label=CI)
+![GitHub CodeQL workflow status](https://img.shields.io/github/actions/workflow/status/viral32111/ai-auto-complete/codeql.yml?label=CodeQL)
+![GitHub repository size](https://img.shields.io/github/repo-size/viral32111/ai-auto-complete?label=Size)
+![GitHub latest release](https://img.shields.io/github/v/release/viral32111/ai-auto-complete?label=Latest%20Release)
+![GitHub release downloads](https://img.shields.io/github/downloads/viral32111/ai-auto-complete/total?label=Downloads)
+![GitHub release date](https://img.shields.io/github/release-date/viral32111/ai-auto-complete?label=Release%20Date)
+![GitHub last commit](https://img.shields.io/github/last-commit/viral32111/ai-auto-complete?label=Last%20Commit)
+
+This is a demonstration of using [OpenAI's GPT natural language models](https://platform.openai.com/docs/models) to generate suggestions & auto-completions for searches.
 
 **NOTE: This project is under development, functionality is not guaranteed!**
 
 ## Background
 
-*TO-DO*
-
-## Usage
-
-*TO-DO*
-
-### Release
-
-*TO-DO*
-
-### Docker
-
-*TO-DO*
+A website said it was doing this which made me want to try it out for myself 😛
 
 ## Configuration
 
-*TO-DO*
+Environment variables are used to configure functionality.
+
+* `EXPRESS_BROWSER_DIRECTORY`
+  * Should be the path to the [browser directory](browser/).
+  * Defaults to `./browser`.
+* `EXPRESS_ADDRESS`
+  * Should be the IP address to listen for web requests on.
+  * Defaults to `127.0.0.1`.
+* `EXPRESS_PORT`
+  * Should be the port number to listen for web requests on.
+  * Defaults to `6900`.
 
 ## Building
 
-*TO-DO*
+1. Clone this repository via `git clone https://github.com/viral32111/ai-auto-complete`.
+2. Open a terminal in the repository's directory.
+3. Install production & development dependencies via `npm install`.
+4. Create an environment variables file (`.env`) with [the required properties](#Configuration).
+5. Launch via `npm start`.
+6. Open your web browser & navigate to the configured address.
 
 ## Useful Links
 
