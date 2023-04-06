@@ -7,3 +7,6 @@ browser/styles
 
 # TypeScript
 dist/
+
+# Configuration
+.env

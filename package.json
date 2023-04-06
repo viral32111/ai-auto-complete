@@ -3,9 +3,10 @@
 	"version": "0.1.0",
 	"description": "Search auto-completion for random topics using AI.",
 	"main": "dist/index.js",
+	"type": "module",
 	"scripts": {
 		"build": "npx webpack && npx tsc",
-		"start": "npx webpack && npx tsc && node ."
+		"start": "npx tsc && node ."
 	},
 	"author": {
 		"name": "viral32111",
