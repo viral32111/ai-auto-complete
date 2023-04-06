@@ -1,13 +1,13 @@
 // Import third-party packages
 import { default as express } from "express"
 import { config as dotenv } from "dotenv"
-import { configure as configureLog4js, getLogger } from "log4js"
+import log4js from "log4js" // CommonJS module so can't import only what we need
 
 // Import our scripts
-import { randomArrayItem } from "./helpers/array"
+import { randomArrayItem } from "./helpers/array.js"
 
 // Configure the log4js package
-configureLog4js( {
+log4js.configure( {
 	appenders: { default: { type: "console" } },
 	categories: { default: {
 		appenders: [ "default" ],
@@ -16,13 +16,15 @@ configureLog4js( {
 } )
 
 // Create the logger for this file
-const log = getLogger( "index" )
+const log = log4js.getLogger( "index" )
 log.info( "Hello %s world ❤", randomArrayItem( [ "beautiful", "gorgeous", "spectacular", "stunning", "incredible" ] ) )
 
 // Fatally log any uncaught errors
 process.on( "uncaughtException", ( error ) => {
 	log.fatal( "%s: %s", error.name, error.message )
 	if ( error.stack != null ) console.error( error.stack )
+
+	process.exit( 1 )
 } )
 
 // Load the environment variables file

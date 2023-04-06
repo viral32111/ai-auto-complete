@@ -1,5 +1,5 @@
 // Import third-party packages
-import { getLogger } from "log4js"
+import log4js from "log4js"
 
 // Import our scripts
 import { CompletionsRequestPayload, CompletionsResponsePayload } from "../interfaces/completions.js"
@@ -13,7 +13,7 @@ import { topics } from "./topics.js"
 const QUERY_MAX_LENGTH = 100 // The maximum number of characters allowed in a query
 
 // Create the logger for this file
-const log = getLogger( "routes/completions" )
+const log = log4js.getLogger( "routes/completions" )
 
 // API route for generating the auto-completions
 expressApp.post( "/api/completions", ( request, response ) => {
