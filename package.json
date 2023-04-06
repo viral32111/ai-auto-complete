@@ -1,0 +1,52 @@
+{
+	"name": "ai-auto-complete",
+	"version": "0.1.0",
+	"description": "Search auto-completion for random topics using AI.",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "npx webpack && npx tsc",
+		"start": "npx webpack && npx tsc && node ."
+	},
+	"author": {
+		"name": "viral32111",
+		"email": "contact@viral32111.com",
+		"url": "https://viral32111.com"
+	},
+	"keywords": [
+		"search",
+		"autocomplete",
+		"ai",
+		"chatgpt"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/viral32111/ai-auto-complete.git"
+	},
+	"bugs": {
+		"url": "https://github.com/viral32111/ai-auto-complete/issues"
+	},
+	"homepage": "https://github.com/viral32111/ai-auto-complete/blob/main/README.md",
+	"license": "AGPL-3.0-only",
+	"private": false,
+	"devDependencies": {
+		"@types/express": "^4.17.17",
+		"@types/node": "^18.15.11",
+		"@typescript-eslint/eslint-plugin": "^5.57.1",
+		"@typescript-eslint/parser": "^5.57.1",
+		"css-loader": "^6.7.3",
+		"eslint": "^8.37.0",
+		"mini-css-extract-plugin": "^2.7.5",
+		"sass": "^1.60.0",
+		"sass-loader": "^13.2.2",
+		"ts-loader": "^9.4.2",
+		"typescript": "^5.0.3",
+		"webpack": "^5.78.0",
+		"webpack-cli": "^5.0.1"
+	},
+	"dependencies": {
+		"dotenv": "^16.0.3",
+		"express": "^4.18.2",
+		"log4js": "^6.9.1",
+		"openai": "^3.2.1"
+	}
+}

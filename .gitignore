@@ -1,2 +1,9 @@
 # NPM packages
 node_modules/
+
+# Webpack
+browser/scripts
+browser/styles
+
+# TypeScript
+dist/
