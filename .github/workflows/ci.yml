@@ -51,6 +51,8 @@ jobs:
         run: npx webpack
 
       - name: Test
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npm test
 
       - name: Upload build artifact
