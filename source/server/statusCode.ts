@@ -7,5 +7,7 @@ export enum StatusCode {
 
 	EmptyTopic = 3,
 	QueryTooLong = 4,
-	UnknownTopic = 5
+	UnknownTopic = 5,
+
+	GenerationFailure = 6
 }

@@ -3,56 +3,65 @@ import log4js from "log4js"
 
 // Import our scripts
 import { CompletionsRequestPayload, CompletionsResponsePayload } from "../interfaces/completions.js"
-import { isWhitespace } from "../helpers/whitespace.js"
+import { isBlank } from "../helpers/string.js"
 import { expressApp } from "../index.js"
 import { StatusCode } from "../statusCode.js"
 import { topics } from "./topics.js"
+import { generateSearchCompletions } from "../openai.js"
 
 // Configuration
-//const COMPLETIONS_COUNT = 5 // The number of completions to generate
+// TODO: Move these to environment variables file
+const COMPLETIONS_MAX_AMOUNT = 5 // The maximum number of completions to generate
 const QUERY_MAX_LENGTH = 100 // The maximum number of characters allowed in a query
 
 // Create the logger for this file
 const log = log4js.getLogger( "routes/completions" )
 
 // API route for generating the auto-completions
-expressApp.post( "/api/completions", ( request, response ) => {
+expressApp.post( "/api/completions", async ( request, response ) => {
 
 	// Ensure the topic was provided
 	if ( request.body.topic === undefined ) return response.status( 400 ).json( {
 		code: StatusCode.MissingProperty,
 		data: { parameter: "topic" }
 	} )
+	log.debug( "Request provided topic property '%s'.", request.body.topic )
 
 	// Ensure the search query was provided
 	if ( request.body.query === undefined ) return response.status( 400 ).json( {
 		code: StatusCode.MissingProperty,
 		data: { parameter: "query" }
 	} )
+	log.debug( "Request provided query property '%s'.", request.body.query )
 
 	// Ensure the topic is a string
 	if ( typeof( request.body[ "topic" ] ) !== "string" ) return response.status( 400 ).json( {
 		code: StatusCode.InvalidPropertyType,
 		data: { parameter: "topic" }
 	} )
+	log.debug( "Request topic property '%s' is a string.", request.body.topic )
 
 	// Ensure the search query is a string
 	if ( typeof( request.body[ "query" ] ) !== "string" ) return response.status( 400 ).json( {
 		code: StatusCode.InvalidPropertyType,
 		data: { parameter: "query" }
 	} )
+	log.debug( "Request query property '%s' is a string.", request.body.query )
 
 	// Convert the request body to the payload structure
 	const requestPayload = request.body as CompletionsRequestPayload
+	log.debug( "Cast request to completions request payload." )
 
 	// Ensure the topic is not blank
-	if ( isWhitespace( requestPayload.query ) === true ) return response.status( 400 ).json( {
+	if ( isBlank( requestPayload.query ) === true ) return response.status( 400 ).json( {
 		code: StatusCode.EmptyTopic,
 		data: { topic: requestPayload.topic }
 	} )
+	log.debug( "Request topic '%s' is not blank.", requestPayload.topic )
 
 	// The query can be blank, but we'll trim it anyway
 	requestPayload.query = requestPayload.query.trim()
+	log.debug( "Trimmed request query '%s'.", requestPayload.query )
 
 	// Ensure the query is not too long
 	if ( requestPayload.query.length > QUERY_MAX_LENGTH ) return response.status( 400 ).json( {
@@ -62,12 +71,14 @@ expressApp.post( "/api/completions", ( request, response ) => {
 			maxLength: QUERY_MAX_LENGTH
 		}
 	} )
+	log.debug( "Request query '%s' is not too long.", requestPayload.query )
 
 	// Ensure the topic exists in the list
 	if ( topics.includes( requestPayload.topic ) === false ) return response.status( 400 ).json( {
 		code: StatusCode.UnknownTopic,
 		data: { topic: requestPayload.topic }
 	} )
+	log.debug( "Request topic '%s' is valid.", requestPayload.topic )
 
 	// Create the payload to send back to the client
 	const responsePayload: CompletionsResponsePayload = {
@@ -75,9 +86,21 @@ expressApp.post( "/api/completions", ( request, response ) => {
 		completions: []
 	}
 
-	// TODO
-	log.debug( "Topic: '%s'", requestPayload.topic )
-	log.debug( "Query: '%s'", requestPayload.query )
+	// Attempt to generate the auto-completions
+	try {
+		log.info( "Generating search auto-completions for topic '%s' with query '%s'...", COMPLETIONS_MAX_AMOUNT, requestPayload.topic, requestPayload.query )
+		responsePayload.completions = await generateSearchCompletions( requestPayload.topic, requestPayload.query, COMPLETIONS_MAX_AMOUNT )
+		log.info( "Generated %d search auto-completions: '%s'", responsePayload.completions.length, requestPayload.topic, requestPayload.query, responsePayload.completions.join( "', '" ) )
+	} catch ( error ) {
+		log.error( "Failed to generate auto-completions! (%s)", error instanceof Error ? error.message : error )
+
+		return response.status( 500 ).json( {
+			code: StatusCode.GenerationFailure,
+			data: {}
+		} )
+	}
+
+	// Return the response payload
 	response.json( {
 		code: StatusCode.Success,
 		data: responsePayload

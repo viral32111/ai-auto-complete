@@ -18,14 +18,16 @@ A website said it was doing this which made me want to try it out for myself ðŸ˜
 Environment variables are used to configure functionality.
 
 * `EXPRESS_BROWSER_DIRECTORY`
-  * Should be the path to the [browser directory](browser/).
+  * The path to the [browser directory](browser/).
   * Defaults to `./browser`.
 * `EXPRESS_ADDRESS`
-  * Should be the IP address to listen for web requests on.
+  * The IP address to listen for web requests on.
   * Defaults to `127.0.0.1`.
 * `EXPRESS_PORT`
-  * Should be the port number to listen for web requests on.
+  * The port number to listen for web requests on.
   * Defaults to `6900`.
+* `OPENAI_API_KEY`
+  * Your [OpenAI account API key](https://platform.openai.com/account/api-keys).
 
 ## Building
 
@@ -40,8 +42,8 @@ Environment variables are used to configure functionality.
 
 * [Tailwind CSS documentation](https://tailwindcss.com/docs/utility-first)
 * [Webpack configuration documentation](https://webpack.js.org/concepts/configuration/)
-* [OpenAI chat completion guide](https://platform.openai.com/docs/guides/chat)
-* [OpenAI chat API reference](https://platform.openai.com/docs/api-reference/chat/create)
+* [OpenAI completion guide](https://platform.openai.com/docs/guides/completion)
+* [OpenAI completions API reference](https://platform.openai.com/docs/api-reference/completions/create?lang=node.js)
 * [Express guide](https://expressjs.com/en/guide/routing.html)
 * [NPM log4js package](https://www.npmjs.com/package/log4js)
 * [NPM dotenv package](https://www.npmjs.com/package/dotenv)

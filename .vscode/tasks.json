@@ -13,6 +13,15 @@
 			"presentation": {
 				"clear": true
 			}
+		},
+		{
+			"type": "npm",
+			"script": "test",
+			"group": "test",
+			"problemMatcher": [],
+			"label": "Test",
+			"detail": "Run Mocha/Chai tests.",
+			"dependsOn": "Build"
 		}
 	]
 }

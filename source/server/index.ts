@@ -1,6 +1,5 @@
 // Import third-party packages
 import { default as express } from "express"
-import { config as dotenv } from "dotenv"
 import log4js from "log4js" // CommonJS module so can't import only what we need
 
 // Import our scripts
@@ -11,7 +10,7 @@ log4js.configure( {
 	appenders: { default: { type: "console" } },
 	categories: { default: {
 		appenders: [ "default" ],
-		level: process.env.NODE_ENV === "production" ? "info" : "debug" // Do not log debug messages in production
+		level: process.env.NODE_ENV === "production" ? "info" : "trace" // Do not log debug messages in production
 	} }
 } )
 
@@ -27,29 +26,8 @@ process.on( "uncaughtException", ( error ) => {
 	process.exit( 1 )
 } )
 
-// Load the environment variables file
-log.debug( "Loading environment variables file..." )
-const dotenvResult = dotenv()
-if ( dotenvResult.error != undefined || dotenvResult.parsed == undefined ) {
-	log.debug( "Failed to load environment variables file! (%s)", dotenvResult.error?.message ) // This is debug level as we want to silently fail in production when the file doesn't exist
-} else {
-	log.debug( "Loaded %d environment variables.", Object.keys( dotenvResult.parsed ).length )
-}
-
-// Ensure all environment variables are valid
-log.debug( "Checking environment variables..." )
-const EXPRESS_BROWSER_DIRECTORY = process.env[ "EXPRESS_BROWSER_DIRECTORY" ] ?? "./browser"
-const EXPRESS_ADDRESS = process.env[ "EXPRESS_ADDRESS" ] ?? "127.0.0.1"
-const EXPRESS_PORT = parseInt( process.env[ "EXPRESS_PORT" ] ?? "6900" )
-if ( isNaN( EXPRESS_PORT ) ) {
-	log.fatal( "Environment variable 'EXPRESS_PORT' is not a number!" )
-	process.exit( 1 )
-}
-if ( EXPRESS_PORT < 0 || EXPRESS_PORT > 65535 ) {
-	log.fatal( "Environment variable 'EXPRESS_PORT' is not a valid port number! (must be between 0 and 65535)" )
-	process.exit( 1 )
-}
-log.debug( "All environment variables are present." )
+// Load the configuration
+const { EXPRESS_ADDRESS, EXPRESS_PORT, EXPRESS_BROWSER_DIRECTORY } = await import( "./config.js" )
 
 // Setup Express
 log.debug( "Initialising Express application..." )
