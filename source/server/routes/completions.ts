@@ -21,14 +21,14 @@ const log = log4js.getLogger( "routes/completions" )
 expressApp.post( "/api/completions", async ( request, response ) => {
 
 	// Ensure the topic was provided
-	if ( request.body.topic === undefined ) return response.status( 400 ).json( {
+	if ( !request.body.topic ) return response.status( 400 ).json( {
 		code: StatusCode.MissingProperty,
 		data: { parameter: "topic" }
 	} )
 	log.debug( "Request provided topic property '%s'.", request.body.topic )
 
 	// Ensure the search query was provided
-	if ( request.body.query === undefined ) return response.status( 400 ).json( {
+	if ( !request.body.query ) return response.status( 400 ).json( {
 		code: StatusCode.MissingProperty,
 		data: { parameter: "query" }
 	} )
@@ -53,7 +53,7 @@ expressApp.post( "/api/completions", async ( request, response ) => {
 	log.debug( "Cast request to completions request payload." )
 
 	// Ensure the topic is not blank
-	if ( isBlank( requestPayload.query ) === true ) return response.status( 400 ).json( {
+	if ( isBlank( requestPayload.query ) ) return response.status( 400 ).json( {
 		code: StatusCode.EmptyTopic,
 		data: { topic: requestPayload.topic }
 	} )
@@ -74,7 +74,7 @@ expressApp.post( "/api/completions", async ( request, response ) => {
 	log.debug( "Request query '%s' is not too long.", requestPayload.query )
 
 	// Ensure the topic exists in the list
-	if ( topics.includes( requestPayload.topic ) === false ) return response.status( 400 ).json( {
+	if ( !topics.includes( requestPayload.topic ) ) return response.status( 400 ).json( {
 		code: StatusCode.UnknownTopic,
 		data: { topic: requestPayload.topic }
 	} )
@@ -88,9 +88,9 @@ expressApp.post( "/api/completions", async ( request, response ) => {
 
 	// Attempt to generate the auto-completions
 	try {
-		log.info( "Generating search auto-completions for topic '%s' with query '%s'...", COMPLETIONS_MAX_AMOUNT, requestPayload.topic, requestPayload.query )
+		log.info( "Generating up to %d search auto-completions for topic '%s' with query '%s'...", COMPLETIONS_MAX_AMOUNT, requestPayload.topic, requestPayload.query )
 		responsePayload.completions = await generateSearchCompletions( requestPayload.topic, requestPayload.query, COMPLETIONS_MAX_AMOUNT )
-		log.info( "Generated %d search auto-completions: '%s'", responsePayload.completions.length, requestPayload.topic, requestPayload.query, responsePayload.completions.join( "', '" ) )
+		log.info( "Generated %d search auto-completions: '%s'", responsePayload.completions.length, responsePayload.completions.join( "', '" ) )
 	} catch ( error ) {
 		log.error( "Failed to generate auto-completions! (%s)", error instanceof Error ? error.message : error )
 
