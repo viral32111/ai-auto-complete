@@ -7,7 +7,7 @@
 
 This is a demonstration of using [OpenAI's GPT natural language models](https://platform.openai.com/docs/models) to generate suggestions & auto-completions for searches.
 
-**NOTE: This project is under development, functionality is not guaranteed!**
+**NOTE: This project is under development so functionality is not guaranteed!**
 
 ## Background
 
@@ -15,7 +15,7 @@ A website said it was doing this which made me want to try it out for myself ðŸ˜
 
 ## Configuration
 
-Environment variables are used to configure functionality.
+The following environment variables are used to configure functionality:
 
 * `EXPRESS_BROWSER_DIRECTORY`
   * The path to the [browser directory](browser/).
