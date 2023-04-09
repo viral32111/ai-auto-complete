@@ -45,4 +45,13 @@ if ( isNullOrBlank( openaiApiKey ) ) {
 }
 export const OPENAI_API_KEY = openaiApiKey
 
+// OpenAI model
+export const OPENAI_MODEL = process.env[ "OPENAI_MODEL" ] ?? "text-davinci-003"
+
+// Maximum number of completions
+export const MAX_COMPLETIONS = parseInt( process.env[ "MAX_COMPLETIONS" ] ?? "5" )
+
+// Maximum character length of a search query
+export const MAX_QUERY_LENGTH = parseInt( process.env[ "MAX_QUERY_LENGTH" ] ?? "100" )
+
 log.debug( "All environment variables are present." )

@@ -28,6 +28,15 @@ The following environment variables are used to configure functionality:
   * Defaults to `6900`.
 * `OPENAI_API_KEY`
   * Your [OpenAI account API key](https://platform.openai.com/account/api-keys).
+* `OPENAI_MODEL`
+  * The name of an [OpenAI model](https://platform.openai.com/docs/models) your account has access to.
+  * Defaults to `text-davinci-003`.
+* `MAX_COMPLETIONS`
+  * The maximum number of completions to generate.
+  * Defaults to `5`.
+* `MAX_QUERY_LENGTH`
+  * The maximum character length of a search query.
+  * Defaults to `100`.
 
 ## Building
 

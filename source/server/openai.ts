@@ -3,7 +3,7 @@ import { Configuration, OpenAIApi } from "openai"
 import log4js from "log4js"
 
 // Import our scripts
-import { OPENAI_API_KEY } from "./config.js"
+import { OPENAI_API_KEY, OPENAI_MODEL } from "./config.js"
 import { isBlank } from "./helpers/string.js"
 
 // Create the logger for this file
@@ -22,7 +22,7 @@ const generateCompletion = async ( prompt: string ) => {
 	// Call the API to generate a single completion
 	log.debug( "Generating text completion for prompt '%s'...", prompt )
 	const response = await openai.createCompletion( {
-		model: "text-davinci-003", // TODO: gpt-4, gpt-3.5-turbo, etc.
+		model: OPENAI_MODEL,
 		prompt: prompt,
 		max_tokens: 512, // Not too long!
 		n: 1,
@@ -52,7 +52,7 @@ export const generateSearchCompletions = async ( topic: string, query: string, m
 	].join( " " ) )
 
 	// Divide the completion text up by lines with text - https://stackoverflow.com/a/2132045
-	const autoCompletions = completion.split( "\n" ).filter( line => !isBlank( line ) )
+	const autoCompletions = completion.split( "\n" ).map( value => value.trim() ).filter( line => !isBlank( line ) )
 
 	// Warn if the AI generated too many completions
 	if ( autoCompletions.length > maximumAmount ) log.warn( "Generated too many auto-completions! (expected %d, but got %d)", maximumAmount, autoCompletions.length )

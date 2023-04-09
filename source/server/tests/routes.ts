@@ -4,6 +4,7 @@ import chai, { use, assert } from "chai"
 // Import our scripts
 import { expressApp } from "../index.js"
 import { StatusCode } from "../statusCode.js"
+import { MAX_COMPLETIONS } from "../config.js"
 
 // Enable plugins
 use( ( await import( "chai-http" ) ).default )
@@ -63,6 +64,6 @@ suite( "API Routes", () => {
 		// Ensure the completions are present
 		assert.isArray( response.body[ "data" ][ "completions" ], "JSON payload completions property is not an array" )
 		assert.isNotEmpty( response.body[ "data" ][ "completions" ], "JSON payload completions property is empty" )
-		//assert.lengthOf( response.body[ "data" ][ "completions" ], 5, "JSON payload completions property does not contain the expected number of items" )
+		assert.isAtMost( response.body[ "data" ][ "completions" ].length, MAX_COMPLETIONS, "JSON payload completions property contains more items than expected" )
 	} )
 } )

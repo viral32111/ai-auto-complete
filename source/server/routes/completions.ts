@@ -8,11 +8,7 @@ import { expressApp } from "../index.js"
 import { StatusCode } from "../statusCode.js"
 import { topics } from "./topics.js"
 import { generateSearchCompletions } from "../openai.js"
-
-// Configuration
-// TODO: Move these to environment variables file
-const COMPLETIONS_MAX_AMOUNT = 5 // The maximum number of completions to generate
-const QUERY_MAX_LENGTH = 100 // The maximum number of characters allowed in a query
+import { MAX_COMPLETIONS, MAX_QUERY_LENGTH } from "../config.js"
 
 // Create the logger for this file
 const log = log4js.getLogger( "routes/completions" )
@@ -64,11 +60,11 @@ expressApp.post( "/api/completions", async ( request, response ) => {
 	log.debug( "Trimmed request query '%s'.", requestPayload.query )
 
 	// Ensure the query is not too long
-	if ( requestPayload.query.length > QUERY_MAX_LENGTH ) return response.status( 400 ).json( {
+	if ( requestPayload.query.length > MAX_QUERY_LENGTH ) return response.status( 400 ).json( {
 		code: StatusCode.QueryTooLong,
 		data: {
 			query: requestPayload.query,
-			maxLength: QUERY_MAX_LENGTH
+			maxLength: MAX_QUERY_LENGTH
 		}
 	} )
 	log.debug( "Request query '%s' is not too long.", requestPayload.query )
@@ -88,8 +84,8 @@ expressApp.post( "/api/completions", async ( request, response ) => {
 
 	// Attempt to generate the auto-completions
 	try {
-		log.info( "Generating up to %d search auto-completions for topic '%s' with query '%s'...", COMPLETIONS_MAX_AMOUNT, requestPayload.topic, requestPayload.query )
-		responsePayload.completions = await generateSearchCompletions( requestPayload.topic, requestPayload.query, COMPLETIONS_MAX_AMOUNT )
+		log.info( "Generating up to %d search auto-completions for topic '%s' with query '%s'...", MAX_COMPLETIONS, requestPayload.topic, requestPayload.query )
+		responsePayload.completions = await generateSearchCompletions( requestPayload.topic, requestPayload.query, MAX_COMPLETIONS )
 		log.info( "Generated %d search auto-completions: '%s'", responsePayload.completions.length, responsePayload.completions.join( "', '" ) )
 	} catch ( error ) {
 		log.error( "Failed to generate auto-completions! (%s)", error instanceof Error ? error.message : error )
