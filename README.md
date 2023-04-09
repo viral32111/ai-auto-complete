@@ -13,6 +13,23 @@ This is a demonstration of using [OpenAI's GPT natural language models](https://
 
 A website said it was doing this which made me want to try it out for myself 😛
 
+# Usage
+
+The recommended way to use this project is via the [Docker image](https://github.com/users/viral32111/packages/container/package/ai-auto-complete).
+
+Run the following command to download the image and create a container:
+
+```
+docker run \
+  --name ai-auto-complete \
+  --env OPENAI_API_KEY=YOUR_API_KEY_HERE \
+  --publish 6900:6900 \
+  --detach \
+  ghcr.io/viral32111/ai-auto-complete:latest
+```
+
+Ensure to replace `YOUR_API_KEY_HERE` with your OpenAI API key (see [configuration](#Configuration)).
+
 ## Configuration
 
 The following environment variables are used to configure functionality:
