@@ -18,8 +18,8 @@ env:
   ARTIFACT_NAME: AI-Auto-Complete
 
 jobs:
-  build:
-    name: Build
+  build-test:
+    name: Build & Test
     runs-on: ubuntu-22.04
     permissions:
       contents: read
@@ -69,7 +69,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-22.04
-    needs: build
+    needs: build-test
     if: ${{ github.event_name == 'push' && github.event.pull_request == null && !startsWith( github.ref, 'refs/heads/dependabot/' ) && github.ref_type == 'tag' }}
     permissions:
       contents: write
