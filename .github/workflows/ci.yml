@@ -52,6 +52,7 @@ jobs:
 
       - name: Test
         env:
+          NODE_ENV: production
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npm test
 
