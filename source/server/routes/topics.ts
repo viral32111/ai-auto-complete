@@ -1,5 +1,6 @@
 // Import our scripts
 import { expressApp } from "../index.js"
+import { StatusCode } from "../statusCode.js"
 
 // The list of topics the client can choose from
 export const topics = [
@@ -17,5 +18,8 @@ export const topics = [
 
 // API route for fetching the list of topics
 expressApp.get( "/api/topics", ( _, response ) => response.json( {
-	"topics": topics
+	code: StatusCode.Success,
+	data: {
+		topics: topics
+	}
 } ) )

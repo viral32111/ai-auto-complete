@@ -4,7 +4,7 @@ import { config as dotenv } from "dotenv"
 import log4js from "log4js" // CommonJS module so can't import only what we need
 
 // Import our scripts
-import { randomArrayItem } from "./helpers/array.js"
+import { randomArrayValue } from "./helpers/array.js"
 
 // Configure the log4js package
 log4js.configure( {
@@ -17,7 +17,7 @@ log4js.configure( {
 
 // Create the logger for this file
 const log = log4js.getLogger( "index" )
-log.info( "Hello %s world ❤", randomArrayItem( [ "beautiful", "gorgeous", "spectacular", "stunning", "incredible" ] ) )
+log.info( "Hello %s world ❤", randomArrayValue( [ "beautiful", "gorgeous", "spectacular", "stunning", "incredible" ] ) )
 
 // Fatally log any uncaught errors
 process.on( "uncaughtException", ( error ) => {
@@ -60,7 +60,7 @@ expressApp.use( express.json( {
 	strict: true
 } ) )
 if ( log.isDebugEnabled() ) expressApp.use( ( request, response, next ) => {
-	response.on( "finish", () => log.debug( `HTTP ${ request.method } ${ request.path } ${ request.body } => ${ response.statusCode }` ) )
+	response.on( "finish", () => log.debug( `HTTP ${ request.method } ${ request.path } ${ JSON.stringify( request.body ) } => ${ response.statusCode }` ) )
 	next()
 } )
 expressApp.use( express.static( EXPRESS_BROWSER_DIRECTORY ) )

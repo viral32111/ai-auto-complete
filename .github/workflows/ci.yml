@@ -50,6 +50,9 @@ jobs:
       - name: Create browser bundles
         run: npx webpack
 
+      - name: Test
+        run: npm test
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
         with:
