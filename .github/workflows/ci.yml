@@ -162,8 +162,8 @@ jobs:
       - name: Create draft release
         uses: softprops/action-gh-release@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ github.ref_name }}
           draft: true
-          files: ./${{ env.ARTIFACT_NAME }}.zip
+          tag_name: ${{ github.ref_name }}
           body: ${{ github.ref_name }}
+          files: ./${{ env.ARTIFACT_NAME }}.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
