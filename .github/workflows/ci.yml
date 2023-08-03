@@ -53,6 +53,7 @@ jobs:
         run: npx webpack
 
       - name: Run tests
+        if: ${{ github.event_name != 'pull_request' && !startsWith( github.ref_name, 'dependabot/' ) }}
         env:
           NODE_ENV: production
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
