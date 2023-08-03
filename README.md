@@ -1,19 +1,21 @@
 # AI Auto-Complete
 
-![GitHub CI workflow status](https://img.shields.io/github/actions/workflow/status/viral32111/ai-auto-complete/ci.yml?label=CI)
-![GitHub CodeQL workflow status](https://img.shields.io/github/actions/workflow/status/viral32111/ai-auto-complete/codeql.yml?label=CodeQL)
+[![CI](https://github.com/viral32111/ai-auto-complete/actions/workflows/ci.yml/badge.svg)](https://github.com/viral32111/ai-auto-complete/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/viral32111/ai-auto-complete/actions/workflows/codeql.yml/badge.svg)](https://github.com/viral32111/ai-auto-complete/actions/workflows/codeql.yml)
+![GitHub tag (with filter)](https://img.shields.io/github/v/tag/viral32111/ai-auto-complete?label=Latest)
 ![GitHub repository size](https://img.shields.io/github/repo-size/viral32111/ai-auto-complete?label=Size)
-![GitHub last commit](https://img.shields.io/github/last-commit/viral32111/ai-auto-complete?label=Last%20Commit)
+![GitHub release downloads](https://img.shields.io/github/downloads/viral32111/ai-auto-complete/total?label=Downloads)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/viral32111/ai-auto-complete?label=Commits)
 
 This is a demonstration of using [OpenAI's GPT natural language models](https://platform.openai.com/docs/models) to generate suggestions & auto-completions for searches.
 
 **NOTE: This project is under development so functionality is not guaranteed!**
 
-## Background
+## 📜 Background
 
 A website said it was doing this which made me want to try it out for myself 😛
 
-# Usage
+# 📥 Usage
 
 The recommended way to use this project is via the [Docker image](https://github.com/users/viral32111/packages/container/package/ai-auto-complete).
 
@@ -30,7 +32,7 @@ docker run \
 
 Ensure to replace `YOUR_API_KEY_HERE` with your OpenAI API key (see [configuration](#Configuration)).
 
-## Configuration
+## ⚙️ Configuration
 
 The following environment variables are used to configure functionality:
 
@@ -55,7 +57,7 @@ The following environment variables are used to configure functionality:
   * The maximum character length of a search query.
   * Defaults to `100`.
 
-## Building
+## 🏗️ Building
 
 1. Clone this repository via `git clone https://github.com/viral32111/ai-auto-complete`.
 2. Open a terminal in the repository's directory.
@@ -64,7 +66,7 @@ The following environment variables are used to configure functionality:
 5. Launch via `npm start`.
 6. Open your web browser & navigate to the configured address.
 
-## Useful Links
+## 🔗 Useful Links
 
 * [Tailwind CSS documentation](https://tailwindcss.com/docs/utility-first)
 * [Webpack configuration documentation](https://webpack.js.org/concepts/configuration/)
@@ -75,7 +77,7 @@ The following environment variables are used to configure functionality:
 * [NPM dotenv package](https://www.npmjs.com/package/dotenv)
 * [NPM openai package](https://www.npmjs.com/package/openai)
 
-## License
+## ⚖️ License
 
 Copyright (C) 2023 [viral32111](https://viral32111.com).
 
