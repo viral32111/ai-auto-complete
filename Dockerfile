@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Start from my Ubuntu-based Node.js image
-FROM ghcr.io/viral32111/nodejs:19-ubuntu
+FROM ghcr.io/viral32111/nodejs:20-ubuntu
 
 # Configure the directory for the project
 ARG PROJECT_DIRECTORY=/usr/local/project
