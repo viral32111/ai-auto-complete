@@ -1,19 +1,19 @@
 // Import third-party packages
-import { Configuration, OpenAIApi } from "openai"
 import log4js from "log4js"
 
 // Import our scripts
 import { OPENAI_API_KEY, OPENAI_MODEL } from "./config.js"
 import { isBlank } from "./helpers/string.js"
+import OpenAI from "openai"
 
 // Create the logger for this file
 const log = log4js.getLogger( "openai" )
 
 // Setup the OpenAI API client
 log.debug( "Creating OpenAI API client..." )
-const openai = new OpenAIApi( new Configuration( {
+const openai = new OpenAI( {
 	apiKey: OPENAI_API_KEY,
-} ) )
+} )
 log.info( "Created OpenAI API client." )
 
 // Generates a completion for a given prompt
@@ -21,21 +21,21 @@ const generateCompletion = async ( prompt: string ) => {
 
 	// Call the API to generate a single completion
 	log.debug( "Generating text completion for prompt '%s'...", prompt )
-	const response = await openai.createCompletion( {
+	const response = await openai.completions.create( {
 		model: OPENAI_MODEL,
 		prompt: prompt,
 		max_tokens: 512, // Not too long!
 		n: 1,
 		user: "ai-auto-complete"
 	} )
-	log.debug( "Generated %d text completion(s): '%s' (%s).", response.data.choices.length, JSON.stringify( response.data.choices ), response.data.id )
+	log.debug( "Generated %d text completion(s): '%s' (%s).", response.choices.length, JSON.stringify( response.choices ), response.id )
 
 	// Ensure we actually got a completion
-	if ( response.data.choices.length <= 0 ) throw new Error( "No completion was generated" )
-	if ( response.data.choices[ 0 ].text == undefined ) throw new Error( "Completion does not contain any text" )
+	if ( response.choices.length <= 0 ) throw new Error( "No completion was generated" )
+	if ( response.choices[ 0 ].text == undefined ) throw new Error( "Completion does not contain any text" )
 
 	// Return the text of the completion
-	return response.data.choices[ 0 ].text
+	return response.choices[ 0 ].text
 
 }
 
