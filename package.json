@@ -5,9 +5,9 @@
 	"main": "dist/index.js",
 	"type": "module",
 	"scripts": {
-		"build": "npx webpack && npx tsc",
-		"start": "npx webpack && npx tsc && node .",
-		"test": "npx tsc --build --clean && npx tsc && npx mocha --ui tdd --timeout 10000 --exit --recursive ./dist/tests/"
+		"build": "webpack && tsc",
+		"start": "webpack && tsc && node .",
+		"test": "tsc --build --clean && tsc && mocha --ui tdd --timeout 10000 --exit --recursive ./dist/tests/"
 	},
 	"author": {
 		"name": "viral32111",
@@ -29,33 +29,50 @@
 	},
 	"homepage": "https://github.com/viral32111/ai-auto-complete/blob/main/README.md",
 	"license": "AGPL-3.0-only",
-	"private": false,
-	"devDependencies": {
-		"@types/chai": "^4.3.6",
-		"@types/chai-string": "^1.4.5",
+	"resolutions": {
+		"@types/chai": "^4.3.20",
 		"@types/express": "^4.17.21",
-		"@types/mocha": "^10.0.8",
-		"@types/node": "^20.13.0",
-		"@typescript-eslint/eslint-plugin": "^7.0.0",
-		"@typescript-eslint/parser": "^6.20.0",
+		"@types/node": "^20.17.10",
+		"@typescript-eslint/eslint-plugin": "^7.18.0",
+		"@typescript-eslint/parser": "^6.21.0",
 		"chai": "^4.5.0",
-		"chai-http": "^4.3.0",
-		"chai-string": "^1.5.0",
-		"css-loader": "^7.1.2",
-		"eslint": "^8.57.0",
-		"mini-css-extract-plugin": "^2.9.1",
-		"mocha": "^10.7.3",
-		"sass": "^1.77.8",
-		"sass-loader": "^16.0.3",
-		"ts-loader": "^9.5.1",
-		"typescript": "^5.7.2",
-		"webpack": "^5.95.0",
-		"webpack-cli": "^5.1.0"
+		"chai-http": "^4.4.0",
+		"eslint": "^8.57.1",
+		"mocha": "^10.8.2",
+		"webpack-cli": "^5.1.4"
 	},
 	"dependencies": {
-		"dotenv": "^16.4.5",
+		"dotenv": "^16.4.7",
 		"express": "^4.21.2",
 		"log4js": "^6.9.1",
-		"openai": "^4.57.0"
+		"openai": "^4.77.0"
+	},
+	"devDependencies": {
+		"@types/chai": "^5.0.1",
+		"@types/chai-string": "^1.4.5",
+		"@types/express": "^5.0.0",
+		"@types/mocha": "^10.0.10",
+		"@types/node": "^22.10.2",
+		"@typescript-eslint/eslint-plugin": "^8.18.1",
+		"@typescript-eslint/parser": "^8.18.1",
+		"chai": "^5.1.2",
+		"chai-http": "^5.1.1",
+		"chai-string": "^1.5.0",
+		"css-loader": "^7.1.2",
+		"eslint": "^9.17.0",
+		"mini-css-extract-plugin": "^2.9.2",
+		"mocha": "11.0.1",
+		"sass": "^1.83.0",
+		"sass-loader": "^16.0.4",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.7.2",
+		"webpack": "^5.97.1",
+		"webpack-cli": "^6.0.1"
+	},
+	"packageManager": "yarn@4.5.3",
+	"engines": {
+		"node": ">=23.5.0",
+		"npm": ">=11.0.0",
+		"yarn": ">=4.5.3"
 	}
 }
