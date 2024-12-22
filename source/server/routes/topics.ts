@@ -1,5 +1,5 @@
 // Import our scripts
-import { expressApp } from "../index.js"
+import { expressApp } from "../express.js"
 import { StatusCode } from "../statusCode.js"
 
 // The list of topics the client can choose from

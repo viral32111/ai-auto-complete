@@ -4,7 +4,7 @@ import log4js from "log4js"
 // Import our scripts
 import { CompletionsRequestPayload, CompletionsResponsePayload } from "../interfaces/completions.js"
 import { isBlank } from "../helpers/string.js"
-import { expressApp } from "../index.js"
+import { expressApp } from "../express.js"
 import { StatusCode } from "../statusCode.js"
 import { topics } from "./topics.js"
 import { generateSearchCompletions } from "../openai.js"
@@ -15,6 +15,8 @@ const log = log4js.getLogger( "routes/completions" )
 
 // API route for generating the auto-completions
 expressApp.post( "/api/completions", async ( request, response ) => {
+
+	log.info( "Received request to generate search auto-completions..." )
 
 	// Ensure the topic was provided
 	if ( !request.body.topic ) return response.status( 400 ).json( {

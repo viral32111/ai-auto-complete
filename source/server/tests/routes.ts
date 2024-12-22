@@ -1,8 +1,10 @@
+import "../index.js"
+
 // Import third-party packages
 import chai, { use, assert } from "chai"
 
 // Import our scripts
-import { expressApp } from "../index.js"
+import { expressApp } from "../express.js"
 import { StatusCode } from "../statusCode.js"
 import { MAX_COMPLETIONS } from "../config.js"
 
